@@ -27,9 +27,9 @@ class LedKit(object):
             self._filename = filename
             self._fd = os.open(filename, os.O_WRONLY)
             self._leds = {}
-            self.caps_lock = Led(self, 'caps_lock', _LED_CAP, magic=_MAGIC)
-            self.scroll_lock = Led(self, 'scroll_lock', _LED_SCR, magic=_MAGIC)
-            self.num_lock = Led(self, 'num_lock', _LED_NUM, magic=_MAGIC)
+            Led(self, 'caps_lock', _LED_CAP, magic=_MAGIC)
+            Led(self, 'scroll_lock', _LED_SCR, magic=_MAGIC)
+            Led(self, 'num_lock', _LED_NUM, magic=_MAGIC)
 
         def __del__(self):
             try:
@@ -77,6 +77,7 @@ class Led(object):
         self._name = name
         self._n = n
         control._leds[n] = self
+        setattr(control, name, self)
 
     def set(self):
         c = self._control

@@ -17,13 +17,19 @@ if _p_linux:
     _LED_NUM = 2
     _LED_CAP = 4
 
-class ControlPanel(object):
+_MAGIC = []
+
+class LedKit(object):
 
     if _p_linux:
 
-        def __init__(self):
-            self._fd = os.open('/dev/console', os.O_WRONLY)
+        def __init__(self, filename):
+            self._filename = filename
+            self._fd = os.open(filename, os.O_WRONLY)
             self._leds = {}
+            self.caps_lock = Led(self, 'caps_lock', _LED_CAP, magic=_MAGIC)
+            self.scroll_lock = Led(self, 'scroll_lock', _LED_SCR, magic=_MAGIC)
+            self.num_lock = Led(self, 'num_lock', _LED_NUM, magic=_MAGIC)
 
         def __del__(self):
             try:
@@ -60,11 +66,13 @@ class ControlPanel(object):
         return result
 
     def __repr__(self):
-        return '%s.%s' % (self.__class__.__module__, 'control_panel')
+        return '%s.%s(%r)' % (self.__class__.__module__, self.__class__.__name__, self._filename)
 
 class Led(object):
 
-    def __init__(self, control, name, n):
+    def __init__(self, control, name, n, magic=None):
+        if magic is not _MAGIC:
+            raise RuntimeError('You are not supposed to create these objects')
         self._control = control
         self._name = name
         self._n = n
@@ -87,14 +95,6 @@ class Led(object):
         return c._get() & ~self._n != 0
 
     def __repr__(self):
-        return '%s.%s' % (self.__class__.__module__, self._name)
-
-control_panel = ControlPanel()
-caps_lock = Led(control_panel, 'caps_lock', _LED_CAP)
-scroll_lock = Led(control_panel, 'scroll_lock', _LED_SCR)
-num_lock = Led(control_panel, 'num_lock', _LED_NUM)
-
-ControlPanel.__init__ = None
-Led.__init__ = None
+        return '%s.%s' % (self._control, self._name)
 
 # vim:ts=4 sw=4 et

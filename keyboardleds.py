@@ -92,7 +92,7 @@ class Led(object):
 
     def get(self):
         c = self._control
-        return c._get() & ~self._n != 0
+        return c._get() & self._n != 0
 
     def __repr__(self):
         return '%s.%s' % (self._control, self._name)

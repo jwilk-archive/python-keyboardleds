@@ -20,6 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
+'''
+>>> lk = LedKit('/dev/tty')
+>>> lk.caps_lock.set()
+>>> lk.caps_lock.reset()
+>>> lk.caps_lock.toggle()
+'''
+
 import sys
 
 _p_linux = sys.platform == 'linux2'

@@ -24,7 +24,7 @@ setup(
 	classifiers = classifiers,
 	url = 'http://jwilk.net/software/python-keyboardleds.html',
 	author = 'Jakub Wilk',
-	author_email = 'ubanus@users.sf.net',
+	author_email = 'jwilk@jwilk.net',
 	py_modules = ['keyboardleds']
 )
 

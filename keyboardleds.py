@@ -1,6 +1,6 @@
 # encoding=UTF8
 
-# Copyright © 2009 Jakub Wilk <ubanus@users.sf.net>
+# Copyright © 2009 Jakub Wilk <jwilk@jwilk.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal

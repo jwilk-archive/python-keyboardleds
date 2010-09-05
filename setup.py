@@ -22,7 +22,7 @@ setup(
 	description = 'keyboard leds manipulation',
 	long_description = __doc__.strip(),
 	classifiers = classifiers,
-	url = 'http://jwilk.net/software/python-keyboardleds.html',
+	url = 'http://jwilk.net/software/python-keyboardleds',
 	author = 'Jakub Wilk',
 	author_email = 'jwilk@jwilk.net',
 	py_modules = ['keyboardleds']

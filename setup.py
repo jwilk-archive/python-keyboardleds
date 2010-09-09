@@ -13,9 +13,12 @@ Programming Language :: Python :: 2
 Topic :: System :: Hardware\
 '''.split('\n')
 
-from distutils.core import setup
+import os
+import distutils.core
 
-setup(
+os.putenv('TAR_OPTIONS', '--owner root --group root --mode a+rX')
+
+distutils.core.setup(
 	name = 'python-keyboardleds',
 	version = '0.1',
 	license = 'MIT',

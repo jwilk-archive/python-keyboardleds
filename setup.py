@@ -21,7 +21,7 @@ os.putenv('TAR_OPTIONS', '--owner root --group root --mode a+rX')
 
 distutils.core.setup(
 	name = 'python-keyboardleds',
-	version = '0.1',
+	version = '0.3',
 	license = 'MIT',
 	description = 'keyboard leds manipulation',
 	long_description = __doc__.strip(),

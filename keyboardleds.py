@@ -1,4 +1,4 @@
-# encoding=UTF8
+# encoding=UTF-8
 
 # Copyright © 2009 Jakub Wilk <jwilk@jwilk.net>
 #

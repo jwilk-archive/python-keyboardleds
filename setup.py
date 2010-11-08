@@ -3,15 +3,15 @@ With *python-keyboardleds* you can interact with your keyboard's LEDs
 (scroll lock, caps lock, num lock).
 '''
 
-classifiers = '''\
+classifiers = '''
 Development Status :: 4 - Beta
 Intended Audience :: Developers
 License :: OSI Approved :: MIT License
 Operating System :: POSIX :: Linux
 Programming Language :: Python
 Programming Language :: Python :: 2
-Topic :: System :: Hardware\
-'''.split('\n')
+Topic :: System :: Hardware
+'''.strip().split('\n')
 
 import os
 import distutils.core

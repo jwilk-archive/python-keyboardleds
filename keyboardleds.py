@@ -86,10 +86,10 @@ class LedKit(object):
             if self._input_subsystem:
                 self.get = self._get_standalone
                 self.set = self._set_standalone
-                for name, n in _input_leds.iteritems():
+                for name, n in _input_leds.items():
                     InputEventLed(self, name, n, magic=_MAGIC)
             else:
-                for name, n in _tty_leds.iteritems():
+                for name, n in _tty_leds.items():
                     Led(self, name, n, magic=_MAGIC)
 
         def __del__(self):
@@ -137,7 +137,7 @@ class LedKit(object):
         return result
 
     def _get_standalone(self):
-        return [led for led in self._leds.itervalues() if led.get()]
+        return [led for led in self._leds.values() if led.get()]
 
     def __repr__(self):
         return '%s.%s(%r)' % (self.__class__.__module__, self.__class__.__name__, self._filename)

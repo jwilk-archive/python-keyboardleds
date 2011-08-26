@@ -14,10 +14,7 @@ Programming Language :: Python :: 3
 Topic :: System :: Hardware
 '''.strip().split('\n')
 
-import os
 import distutils.core
-
-os.putenv('TAR_OPTIONS', '--owner root --group root --mode a+rX')
 
 distutils.core.setup(
 	name = 'python-keyboardleds',

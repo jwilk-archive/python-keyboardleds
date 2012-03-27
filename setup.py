@@ -12,7 +12,7 @@ Programming Language :: Python
 Programming Language :: Python :: 2
 Programming Language :: Python :: 3
 Topic :: System :: Hardware
-'''.strip().split('\n')
+'''.strip().splitlines()
 
 import distutils.core
 

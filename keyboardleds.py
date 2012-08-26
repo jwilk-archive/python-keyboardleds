@@ -30,10 +30,10 @@
 
 import sys
 
-_p_linux = sys.platform == 'linux2'
+_p_linux = sys.platform.startswith('linux')
 
 if not _p_linux:
-    raise NotImplementedError
+    raise NotImplementedError('the %r platform is not supported' % sys.platform)
 
 if _p_linux:
 

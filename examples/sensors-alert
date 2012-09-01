@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 TEMPERATURE_LIMIT = 75.0
+# Temperatures above this limit are consider bogus, and thus ignored.
+TEMPERATURE_BOGUS_LIMIT = 200.0
 SLEEP = 5
 BLINK_SLEEP = 0.2
 
@@ -33,7 +35,7 @@ while True:
         if match is not None:
             temperature = match.group(1)
             temperature = float(temperature)
-            if temperature > TEMPERATURE_LIMIT:
+            if TEMPERATURE_LIMIT < temperature < TEMPERATURE_BOGUS_LIMIT:
                 alert = True
     sensors.wait()
     if alert:

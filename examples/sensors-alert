@@ -28,7 +28,7 @@ temperature_re = re.compile('^ +temp[0-9]+_input: ([0-9.]+)$')
 
 while True:
     alert = False
-    sensors = subprocess.Popen(['/usr/bin/sensors', '-u'], stdout=subprocess.PIPE)
+    sensors = subprocess.Popen(['sensors', '-u'], stdout=subprocess.PIPE)
     for line in sensors.stdout:
         line = line.rstrip()
         match = temperature_re.match(line)

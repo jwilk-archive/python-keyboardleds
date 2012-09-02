@@ -21,12 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-TEMPERATURE_LIMIT = 75.0
-# Temperatures above this limit are consider bogus, and thus ignored.
-TEMPERATURE_BOGUS_LIMIT = 200.0
-SLEEP = 5
-BLINK_SLEEP = 0.2
-
+import argparse
 import glob
 import grp
 import os
@@ -43,39 +38,67 @@ def drop_privileges():
     os.setgid(gid)
     os.setuid(uid)
 
-event_device = glob.glob('/dev/input/by-path/*-event-kbd')[0]
-ledkit = keyboardleds.LedKit(event_device)
-drop_privileges()
-led = ledkit.caps_lock
+def main(options):
+    event_device = glob.glob('/dev/input/by-path/*-event-kbd')[0]
+    ledkit = keyboardleds.LedKit(event_device)
+    drop_privileges()
+    led = ledkit.caps_lock
+    temperature_re = re.compile('^ +temp[0-9]+_input: ([0-9.]+)$')
+    try:
+        while True:
+            alert = False
+            sensors = subprocess.Popen(['sensors', '-u'], stdout=subprocess.PIPE)
+            for line in sensors.stdout:
+                line = line.rstrip()
+                match = temperature_re.match(line)
+                if match is not None:
+                    temperature = match.group(1)
+                    temperature = float(temperature)
+                    if options.temperature_limit < temperature < options.bogus_temperature_limit:
+                        alert = True
+            sensors.wait()
+            if alert:
+                i = 0
+                while i * options.blink_period < options.poll_period:
+                    if i & 1 == 0:
+                        led.set()
+                    else:
+                        led.reset()
+                    time.sleep(options.blink_period)
+                    i += 1
+                led.reset()
+            else:
+                time.sleep(options.poll_period)
+    finally:
+        led.reset()
 
-temperature_re = re.compile('^ +temp[0-9]+_input: ([0-9.]+)$')
+def parse_args():
+    class default:
+        temperature_limit = 75.0
+        bogus_temperature_limit = 200.0
+        poll_period = 5.0
+        blink_period = 0.2
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-t', '--temperature-limit', metavar='<temp>', type=float,
+        default=default.temperature_limit,
+        help='temperatures above this limit will trigger the alert (default: {0:.0f} deg C)'.format(default.temperature_limit),
+    )
+    ap.add_argument('--bogus-temperature-limit', metavar='<temp>', type=float,
+        default=default.bogus_temperature_limit,
+        help='temperatures above this limit will be consider bogus, and thus ignored (default: {0:.0f} deg C)'.format(default.bogus_temperature_limit),
+    )
+    ap.add_argument('--poll-period', metavar='<time>', type=float,
+        default=default.poll_period,
+        help='how often to poll sensors (default: {0:.1f} s)'.format(default.poll_period),
+    )
+    ap.add_argument('--blink-period', metavar='<time>', type=float,
+        default=default.blink_period,
+        help='how often to blink when alert is on (default: {0:.1f} s)'.format(default.blink_period),
+    )
+    return ap.parse_args()
 
-try:
-    while True:
-        alert = False
-        sensors = subprocess.Popen(['sensors', '-u'], stdout=subprocess.PIPE)
-        for line in sensors.stdout:
-            line = line.rstrip()
-            match = temperature_re.match(line)
-            if match is not None:
-                temperature = match.group(1)
-                temperature = float(temperature)
-                if TEMPERATURE_LIMIT < temperature < TEMPERATURE_BOGUS_LIMIT:
-                    alert = True
-        sensors.wait()
-        if alert:
-            i = 0
-            while i * BLINK_SLEEP < SLEEP:
-                if i & 1 == 0:
-                    led.set()
-                else:
-                    led.reset()
-                time.sleep(BLINK_SLEEP)
-                i += 1
-            led.reset()
-        else:
-            time.sleep(SLEEP)
-finally:
-    led.reset()
+if __name__ == '__main__':
+    options = parse_args()
+    main(options)
 
 # vim:ts=4 sw=4 et

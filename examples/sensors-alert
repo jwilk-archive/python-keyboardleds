@@ -42,7 +42,7 @@ def main(options):
     event_device = glob.glob('/dev/input/by-path/*-event-kbd')[0]
     ledkit = keyboardleds.LedKit(event_device)
     drop_privileges()
-    led = ledkit.caps_lock
+    led = getattr(ledkit, options.led.replace('-', '_'))
     temperature_re = re.compile('^ +temp[0-9]+_input: ([0-9.]+)$')
     try:
         while True:
@@ -73,6 +73,7 @@ def main(options):
         led.reset()
 
 def parse_args():
+    led_names = list(t + '-lock' for t in ('caps', 'num', 'scroll'))
     class default:
         temperature_limit = 75.0
         bogus_temperature_limit = 200.0
@@ -86,6 +87,9 @@ def parse_args():
     ap.add_argument('--bogus-temperature-limit', metavar='<temp>', type=float,
         default=default.bogus_temperature_limit,
         help='temperatures above this limit will be consider bogus, and thus ignored (default: {0:.0f} deg C)'.format(default.bogus_temperature_limit),
+    )
+    ap.add_argument('--led', choices=led_names, default=led_names[0],
+        help='keyboard LED to use',
     )
     ap.add_argument('--poll-period', metavar='<time>', type=float,
         default=default.poll_period,

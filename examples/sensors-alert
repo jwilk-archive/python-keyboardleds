@@ -50,6 +50,7 @@ def main(options):
             sensors = subprocess.Popen(['sensors', '-u'], stdout=subprocess.PIPE)
             for line in sensors.stdout:
                 line = line.rstrip()
+                line = line.decode('ASCII', 'replace') # make Python 3.X happy
                 match = temperature_re.match(line)
                 if match is not None:
                     temperature = match.group(1)

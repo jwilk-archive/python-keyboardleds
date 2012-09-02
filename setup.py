@@ -15,10 +15,17 @@ Topic :: System :: Hardware
 '''.strip().splitlines()
 
 import distutils.core
+import os
+
+def get_version():
+    with open(os.path.join('doc', 'changelog')) as changelog:
+        return changelog.readline().split()[1].strip('()')
+
+__version__ = get_version()
 
 distutils.core.setup(
 	name = 'python-keyboardleds',
-	version = '0.3',
+	version = __version__,
 	license = 'MIT',
 	description = 'keyboard leds manipulation',
 	long_description = __doc__.strip(),

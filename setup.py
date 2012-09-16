@@ -24,16 +24,16 @@ def get_version():
 __version__ = get_version()
 
 distutils.core.setup(
-	name = 'python-keyboardleds',
-	version = __version__,
-	license = 'MIT',
-	description = 'keyboard leds manipulation',
-	long_description = __doc__.strip(),
-	classifiers = classifiers,
-	url = 'http://jwilk.net/software/python-keyboardleds',
-	author = 'Jakub Wilk',
-	author_email = 'jwilk@jwilk.net',
-	py_modules = ['keyboardleds']
+    name = 'python-keyboardleds',
+    version = __version__,
+    license = 'MIT',
+    description = 'keyboard leds manipulation',
+    long_description = __doc__.strip(),
+    classifiers = classifiers,
+    url = 'http://jwilk.net/software/python-keyboardleds',
+    author = 'Jakub Wilk',
+    author_email = 'jwilk@jwilk.net',
+    py_modules = ['keyboardleds']
 )
 
 # vim:ts=4 sw=4 et

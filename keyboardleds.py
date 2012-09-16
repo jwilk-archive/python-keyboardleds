@@ -77,9 +77,9 @@ class LedKit(object):
 
     if _p_linux:
 
-        def __init__(self, filename):
-            self._filename = filename
-            self._fd = os.open(filename, os.O_WRONLY)
+        def __init__(self, device_path):
+            self._filename = device_path
+            self._fd = os.open(device_path, os.O_WRONLY)
             info = os.fstat(self._fd)
             self._input_subsystem = stat.S_ISCHR(info.st_mode) and _EVENT_DEV_MIN <= info.st_rdev <= _EVENT_DEV_MAX
             self._leds = {}

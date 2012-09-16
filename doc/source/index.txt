@@ -1,0 +1,53 @@
+python-keyboardleds documentation
+=================================
+
+.. currentmodule:: keyboardleds
+
+.. class:: LedKit(device_path)
+
+   :param device_path:
+      path to a device: either
+      a terminal (:file:`/dev/tty` or :file:`/dev/tty{N}`) or
+      an input device :file:`/dev/input/event{N}`).
+
+   .. attribute:: caps_lock
+
+      A :class:`Led` instance for the **Caps Lock** key.
+
+   .. attribute:: scroll_lock
+
+      A :class:`Led` instance for the **Scroll Lock** key.
+
+   .. attribute:: num_lock
+
+      A :class:`Led` instance for the **Num Lock** key.
+
+.. autoclass:: Led
+
+   Users are not supposed to instantiate this class themselves. Instead, they should use
+   :attr:`LedKit.caps_lock`,
+   :attr:`LedKit.scroll_lock` and
+   :attr:`LedKit.num_lock` attributes.
+
+   .. method:: get()
+
+      Return true if the led is turned on.
+
+      :rtype: :class:`bool`
+      :raises: :class:`NotImplementedError` if the underlying device is not a terminal
+
+   .. method:: set()
+
+      Turn the led on.
+
+   .. method:: reset()
+
+      Turn the led off.
+
+   .. method:: toggle()
+
+      True the led on if it was off; turn if off otherwise.
+
+      :raises: :class:`NotImplementedError` if the underlying device is not a terminal
+
+.. vim:ts=3 sw=3 et ft=rst

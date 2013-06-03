@@ -2,7 +2,7 @@ python-keyboardleds (0.3.2) UNRELEASED; urgency=low
 
   * Add documentation.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sun, 16 Sep 2012 13:22:32 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Mon, 03 Jun 2013 19:23:26 +0200
 
 python-keyboardleds (0.3.1) unstable; urgency=low
 

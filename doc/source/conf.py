@@ -3,8 +3,8 @@ import os
 source_suffix = '.txt'
 master_doc = 'index'
 
-project = u'python-keyboardleds'
-copyright = u'2012, Jakub Wilk'
+project = 'python-keyboardleds'
+copyright = '2012, 2013, Jakub Wilk'
 
 def get_version():
     path = os.path.join(

@@ -53,7 +53,7 @@ API
 Example
 =======
 
-.. literalinclude:: ../../examples/sensors-alert
+.. literalinclude:: ../examples/sensors-alert
    :lines: 24-
 
 .. vim:ts=3 sw=3 et ft=rst

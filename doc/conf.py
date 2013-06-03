@@ -9,9 +9,7 @@ copyright = '2012, 2013, Jakub Wilk'
 def get_version():
     path = os.path.join(
         os.path.dirname(__file__),
-        os.pardir,
-        os.pardir,
-        'doc', 'changelog',
+        'changelog',
     )
     with open(path) as changelog:
         return changelog.readline().split()[1].strip('()')

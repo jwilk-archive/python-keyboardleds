@@ -1,5 +1,5 @@
-python-keyboardleds documentation
-=================================
+API
+===
 
 .. currentmodule:: keyboardleds
 
@@ -49,5 +49,11 @@ python-keyboardleds documentation
       True the led on if it was off; turn if off otherwise.
 
       :raises: :class:`NotImplementedError` if the underlying device is not a terminal
+
+Example
+=======
+
+.. literalinclude:: ../../examples/sensors-alert
+   :lines: 24-
 
 .. vim:ts=3 sw=3 et ft=rst

@@ -32,11 +32,13 @@ import time
 
 import keyboardleds
 
+
 def drop_privileges():
     uid = pwd.getpwnam('nobody').pw_uid
     gid = grp.getgrnam('nogroup').gr_gid
     os.setgid(gid)
     os.setuid(uid)
+
 
 def main(options):
     event_device = glob.glob('/dev/input/by-path/*-event-kbd')[0]
@@ -47,15 +49,19 @@ def main(options):
     try:
         while True:
             alert = False
-            sensors = subprocess.Popen(['sensors', '-u'], stdout=subprocess.PIPE)
+            sensors = subprocess.Popen(
+                ['sensors', '-u'],
+                stdout=subprocess.PIPE
+            )
             for line in sensors.stdout:
                 line = line.rstrip()
-                line = line.decode('ASCII', 'replace') # make Python 3.X happy
+                line = line.decode('ASCII', 'replace')  # make Python 3.X happy
                 match = temperature_re.match(line)
                 if match is not None:
                     temperature = match.group(1)
                     temperature = float(temperature)
-                    if options.temperature_limit < temperature < options.bogus_temperature_limit:
+                    if (options.temperature_limit < temperature
+                            < options.bogus_temperature_limit):
                         alert = True
             sensors.wait()
             if alert:
@@ -73,13 +79,16 @@ def main(options):
     finally:
         led.reset()
 
+
 def parse_args():
     led_names = list(t + '-lock' for t in ('caps', 'num', 'scroll'))
+
     class default:
         temperature_limit = 75.0
         bogus_temperature_limit = 200.0
         poll_period = 5.0
         blink_period = 0.2
+
     ap = argparse.ArgumentParser()
     ap.add_argument('-t', '--temperature-limit', metavar='<temp>', type=float,
         default=default.temperature_limit,

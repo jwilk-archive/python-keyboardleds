@@ -6,8 +6,6 @@ master_doc = 'index'
 project = u'python-keyboardleds'
 copyright = u'2012, Jakub Wilk'
 
-extensions = ['sphinx.ext.autodoc']
-
 def get_version():
     path = os.path.join(
         os.path.dirname(__file__),

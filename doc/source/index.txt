@@ -22,7 +22,7 @@ python-keyboardleds documentation
 
       A :class:`Led` instance for the **Num Lock** key.
 
-.. autoclass:: Led
+.. class:: Led
 
    Users are not supposed to instantiate this class themselves. Instead, they should use
    :attr:`LedKit.caps_lock`,

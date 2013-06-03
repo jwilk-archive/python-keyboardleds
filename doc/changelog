@@ -1,8 +1,9 @@
 python-keyboardleds (0.3.2) UNRELEASED; urgency=low
 
   * Add documentation.
+  * Make the code compatible with PEP-8.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Mon, 03 Jun 2013 19:23:26 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Mon, 03 Jun 2013 19:26:38 +0200
 
 python-keyboardleds (0.3.1) unstable; urgency=low
 

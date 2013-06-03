@@ -1,6 +1,6 @@
 # encoding=UTF-8
 
-# Copyright © 2009, 2010, 2012 Jakub Wilk <jwilk@jwilk.net>
+# Copyright © 2009, 2010, 2012, 2013 Jakub Wilk <jwilk@jwilk.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -33,7 +33,9 @@ import sys
 _p_linux = sys.platform.startswith('linux')
 
 if not _p_linux:
-    raise NotImplementedError('the %r platform is not supported' % sys.platform)
+    raise NotImplementedError(
+        'the %r platform is not supported' % sys.platform
+    )
 
 if _p_linux:
 
@@ -47,31 +49,32 @@ if _p_linux:
     _KDSETLED = 0x4B32
 
     _tty_leds = dict(
-        scroll_lock = 0x01,
-        num_lcok = 0x02,
-        caps_lock = 0x04,
+        scroll_lock=0x01,
+        num_lcok=0x02,
+        caps_lock=0x04,
     )
 
     _EV_LED = 0x11
 
     _input_leds = dict(
-        num_lock = 0x00,
-        caps_lock = 0x01,
-        scroll_lock = 0x02,
-        compose = 0x03,
-        kana = 0x04,
-        sleep = 0x05,
-        suspend = 0x06,
-        mute = 0x07,
-        misc = 0x08,
-        mail = 0x09,
-        charging = 0x0a,
+        num_lock=0x00,
+        caps_lock=0x01,
+        scroll_lock=0x02,
+        compose=0x03,
+        kana=0x04,
+        sleep=0x05,
+        suspend=0x06,
+        mute=0x07,
+        misc=0x08,
+        mail=0x09,
+        charging=0x0a,
     )
 
     _EVENT_DEV_MIN = 0x0D40
     _EVENT_DEV_MAX = _EVENT_DEV_MIN + 0x20 - 1
 
 _MAGIC = []
+
 
 class LedKit(object):
 
@@ -81,7 +84,10 @@ class LedKit(object):
             self._filename = device_path
             self._fd = os.open(device_path, os.O_WRONLY)
             info = os.fstat(self._fd)
-            self._input_subsystem = stat.S_ISCHR(info.st_mode) and _EVENT_DEV_MIN <= info.st_rdev <= _EVENT_DEV_MAX
+            self._input_subsystem = (
+                stat.S_ISCHR(info.st_mode) and
+                _EVENT_DEV_MIN <= info.st_rdev <= _EVENT_DEV_MAX
+            )
             self._leds = {}
             if self._input_subsystem:
                 self.get = self._get_standalone
@@ -140,7 +146,12 @@ class LedKit(object):
         return [led for led in self._leds.values() if led.get()]
 
     def __repr__(self):
-        return '%s.%s(%r)' % (self.__class__.__module__, self.__class__.__name__, self._filename)
+        return '%s.%s(%r)' % (
+            self.__class__.__module__,
+            self.__class__.__name__,
+            self._filename
+        )
+
 
 class Led(object):
 

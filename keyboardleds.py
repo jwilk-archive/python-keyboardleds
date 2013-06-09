@@ -50,7 +50,7 @@ if _p_linux:
 
     _tty_leds = dict(
         scroll_lock=0x01,
-        num_lcok=0x02,
+        num_lock=0x02,
         caps_lock=0x04,
     )
 

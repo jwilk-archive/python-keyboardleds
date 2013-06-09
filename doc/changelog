@@ -1,8 +1,9 @@
 python-keyboardleds (0.3.3) UNRELEASED; urgency=low
 
-  * 
+  * Fix a typo in the num_lock attribute name.
+    Thanks to Jörg Knobloch for the bug report.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Mon, 03 Jun 2013 20:11:53 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Sun, 09 Jun 2013 23:21:04 +0200
 
 python-keyboardleds (0.3.2) unstable; urgency=low
 

@@ -17,6 +17,7 @@ release = version = get_version()
 
 html_theme = 'haiku'
 html_show_copyright = False
+html_show_sphinx = False
 pygments_style = 'sphinx'
 
 # vim:ts=4 sw=4 et

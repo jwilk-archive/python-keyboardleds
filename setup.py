@@ -34,17 +34,17 @@ if sphinx_setup_command is not None:
     cmdclass['build_doc'] = sphinx_setup_command.BuildDoc
 
 distutils.core.setup(
-    name = 'python-keyboardleds',
-    version = __version__,
-    license = 'MIT',
-    description = 'keyboard leds manipulation',
-    long_description = __doc__.strip(),
-    classifiers = classifiers,
-    url = 'http://jwilk.net/software/python-keyboardleds',
-    author = 'Jakub Wilk',
-    author_email = 'jwilk@jwilk.net',
-    py_modules = ['keyboardleds'],
-    cmdclass = cmdclass,
+    name='python-keyboardleds',
+    version=__version__,
+    license='MIT',
+    description='keyboard leds manipulation',
+    long_description=__doc__.strip(),
+    classifiers=classifiers,
+    url='http://jwilk.net/software/python-keyboardleds',
+    author='Jakub Wilk',
+    author_email='jwilk@jwilk.net',
+    py_modules=['keyboardleds'],
+    cmdclass=cmdclass,
 )
 
 # vim:ts=4 sw=4 et

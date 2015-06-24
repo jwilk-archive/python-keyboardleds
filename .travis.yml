@@ -1,0 +1,14 @@
+language: python
+python:
+- "2.6"
+- "2.7"
+- "3.2"
+- "3.3"
+- "3.4"
+install:
+- pip install sphinx
+script:
+- python -m compileall -f .
+- '[ "$TRAVIS_PYTHON_VERSION" = "3.2" ] || python setup.py build_doc'
+
+# vim:ts=2 sts=2 sw=2 et

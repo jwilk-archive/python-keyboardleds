@@ -1,6 +1,6 @@
 # encoding=UTF-8
 
-# Copyright © 2009-2013 Jakub Wilk <jwilk@jwilk.net>
+# Copyright © 2009-2015 Jakub Wilk <jwilk@jwilk.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -34,7 +34,7 @@ _p_linux = sys.platform.startswith('linux')
 
 if not _p_linux:
     raise NotImplementedError(
-        'the %r platform is not supported' % sys.platform
+        'the {sys.platform!r} platform is not supported'.format(sys=sys)
     )
 
 if _p_linux:
@@ -146,10 +146,10 @@ class LedKit(object):
         return [led for led in self._leds.values() if led.get()]
 
     def __repr__(self):
-        return '%s.%s(%r)' % (
-            self.__class__.__module__,
-            self.__class__.__name__,
-            self._filename
+        return '{mod}.{cls}({file!r})'.format(
+            mod=self.__class__.__module__,
+            cls=self.__class__.__name__,
+            file=self._filename,
         )
 
 
@@ -183,7 +183,7 @@ class Led(object):
         return c._get() & self._n != 0
 
     def __repr__(self):
-        return '%s.%s' % (self._control, self._name)
+        return '{ctrl}.{name}'.format(ctrl=self._control, name=self._name)
 
 if _p_linux:
 

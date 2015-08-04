@@ -147,8 +147,8 @@ class LedKit(object):
 
     def __repr__(self):
         return '{mod}.{cls}({file!r})'.format(
-            mod=self.__class__.__module__,
-            cls=self.__class__.__name__,
+            mod=type(self).__module__,
+            cls=type(self).__name__,
             file=self._filename,
         )
 

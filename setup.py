@@ -37,7 +37,7 @@ distutils.core.setup(
     name='python-keyboardleds',
     version=__version__,
     license='MIT',
-    description='keyboard leds manipulation',
+    description='keyboard LEDs manipulation',
     long_description=__doc__.strip(),
     classifiers=classifiers,
     url='http://jwilk.net/software/python-keyboardleds',

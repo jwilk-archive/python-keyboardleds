@@ -3,17 +3,6 @@ With *python-keyboardleds* you can interact with your keyboard's LEDs
 (scroll lock, caps lock, num lock).
 '''
 
-classifiers = '''
-Development Status :: 4 - Beta
-Intended Audience :: Developers
-License :: OSI Approved :: MIT License
-Operating System :: POSIX :: Linux
-Programming Language :: Python
-Programming Language :: Python :: 2
-Programming Language :: Python :: 3
-Topic :: System :: Hardware
-'''.strip().splitlines()
-
 import distutils.core
 import os
 
@@ -32,6 +21,17 @@ cmdclass = {}
 
 if sphinx_setup_command is not None:
     cmdclass['build_doc'] = sphinx_setup_command.BuildDoc
+
+classifiers = '''
+Development Status :: 4 - Beta
+Intended Audience :: Developers
+License :: OSI Approved :: MIT License
+Operating System :: POSIX :: Linux
+Programming Language :: Python
+Programming Language :: Python :: 2
+Programming Language :: Python :: 3
+Topic :: System :: Hardware
+'''.strip().splitlines()
 
 distutils.core.setup(
     name='python-keyboardleds',

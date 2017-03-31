@@ -25,9 +25,11 @@ With *python-keyboardleds* you can interact with your keyboard's LEDs
 (scroll lock, caps lock, num lock).
 '''
 
-import distutils.core
 import io
 import os
+
+import distutils.core
+from distutils.command.sdist import sdist as distutils_sdist
 
 try:
     import sphinx.setup_command as sphinx_setup_command
@@ -40,7 +42,21 @@ def get_version():
 
 __version__ = get_version()
 
-cmdclass = {}
+class cmd_sdist(distutils_sdist):
+
+    def maybe_move_file(self, base_dir, src, dst):
+        src = os.path.join(base_dir, src)
+        dst = os.path.join(base_dir, dst)
+        if os.path.exists(src):
+            self.move_file(src, dst)
+
+    def make_release_tree(self, base_dir, files):
+        distutils_sdist.make_release_tree(self, base_dir, files)
+        self.maybe_move_file(base_dir, 'LICENSE', 'doc/LICENSE')
+
+cmdclass = dict(
+    sdist=cmd_sdist,
+)
 
 if sphinx_setup_command is not None:
     cmdclass['build_doc'] = sphinx_setup_command.BuildDoc

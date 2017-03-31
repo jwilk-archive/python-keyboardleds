@@ -46,8 +46,8 @@ except ImportError:
     sphinx_setup_command = None
 
 def get_version():
-    with io.open('doc/changelog', encoding='UTF-8') as changelog:
-        line = changelog.readline()
+    with io.open('doc/changelog', encoding='UTF-8') as file:
+        line = file.readline()
     return line.split()[1].strip('()')
 
 __version__ = get_version()

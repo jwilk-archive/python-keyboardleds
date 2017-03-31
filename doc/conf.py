@@ -11,8 +11,9 @@ def get_version():
         os.path.dirname(__file__),
         'changelog',
     )
-    with io.open(path, encoding='UTF-8') as changelog:
-        return changelog.readline().split()[1].strip('()')
+    with io.open(path, encoding='UTF-8') as file:
+        line = file.readline()
+    return line.split()[1].strip('()')
 
 release = version = get_version()
 

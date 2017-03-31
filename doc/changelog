@@ -3,7 +3,7 @@ python-keyboardleds (0.3.4) UNRELEASED; urgency=low
   * Put license into a separate file.
   * Use /usr/bin/env in shebang.
   * Improve the setup script:
-    + Fix unicode error with Python 3 and LC_ALL=C.
+    + Fix Unicode error with Python 3 and LC_ALL=C.
     + Add Python version check.
   * Improve API documentation:
     + Don't include copyright information.

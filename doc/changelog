@@ -1,8 +1,14 @@
 python-keyboardleds (0.3.4) UNRELEASED; urgency=low
 
-  * 
+  * Put license into a separate file.
+  * Use /usr/bin/env in shebang.
+  * Improve the setup script:
+    + Fix unicode error with Python 3 and LC_ALL=C.
+  * Improve API documentation:
+    + Don't include copyright information.
+    + Don't include Sphinx version.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Mon, 10 Jun 2013 22:56:13 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 31 Mar 2017 15:08:53 +0200
 
 python-keyboardleds (0.3.3) unstable; urgency=low
 

@@ -38,7 +38,8 @@ except ImportError:
 
 def get_version():
     with io.open('doc/changelog', encoding='UTF-8') as changelog:
-        return changelog.readline().split()[1].strip('()')
+        line = changelog.readline()
+    return line.split()[1].strip('()')
 
 __version__ = get_version()
 

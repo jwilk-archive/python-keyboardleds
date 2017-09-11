@@ -67,7 +67,7 @@ if _p_linux:
         mute=0x07,
         misc=0x08,
         mail=0x09,
-        charging=0x0a,
+        charging=0x0A,
     )
 
     _EVENT_DEV_MIN = 0x0D40

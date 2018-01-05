@@ -17,5 +17,8 @@ script:
 - python -m compileall -f .
 - \[ -z "$use_sphinx" ] || python setup.py build_doc
 - LC_ALL=C python setup.py --version
+- python setup.py install
+- cd /
+- python -c 'import keyboardleds'
 
 # vim:ts=2 sts=2 sw=2 et

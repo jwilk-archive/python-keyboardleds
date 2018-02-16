@@ -11,10 +11,12 @@ python:
 - "3.6"
 - "3.7-dev"
 install:
+- pip install pydiatra pyflakes
 - \[ "$TRAVIS_PYTHON_VERSION" = "2.6" ] || \[ "$TRAVIS_PYTHON_VERSION" = "3.2" ] || \[ "$TRAVIS_PYTHON_VERSION" = "3.3" ] || use_sphinx=yes
 - \[ -z "$use_sphinx" ] || pip install sphinx
 script:
-- python -m compileall -f .
+- python -m pydiatra .
+- pyflakes .
 - \[ -z "$use_sphinx" ] || python setup.py build_doc
 - LC_ALL=C python setup.py --version
 - python setup.py install

@@ -5,11 +5,12 @@ python-keyboardleds (0.3.4) UNRELEASED; urgency=low
   * Improve the setup script:
     + Fix Unicode error with Python 3 and LC_ALL=C.
     + Add Python version check.
+    + Use distutils644 to normalize source tarball permissions etc.
   * Improve API documentation:
     + Don't include copyright information.
     + Don't include Sphinx version.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 31 Mar 2017 18:26:11 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 18 May 2018 22:49:19 +0200
 
 python-keyboardleds (0.3.3) unstable; urgency=low
 

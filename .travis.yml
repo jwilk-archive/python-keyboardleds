@@ -11,10 +11,13 @@ python:
 - "3.6"
 - "3.7-dev"
 before_install:
+- pyflakes=pyflakes
+- if [[ $TRAVIS_PYTHON_VERSION = 2.6 ]]; then pyflakes='pyflakes<2'; fi
+- if [[ $TRAVIS_PYTHON_VERSION = 3.[23] ]]; then pyflakes='pyflakes<2'; fi
 - if [[ $TRAVIS_PYTHON_VERSION = 2.6 ]]; then if_sphinx=:; fi
 - if [[ $TRAVIS_PYTHON_VERSION = 3.[23] ]]; then if_sphinx=:; fi
 install:
-- pip install pydiatra pyflakes
+- pip install pydiatra $pyflakes
 - $if_sphinx pip install sphinx
 script:
 - python -m pydiatra .

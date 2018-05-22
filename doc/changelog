@@ -1,5 +1,6 @@
 python-keyboardleds (0.3.4) UNRELEASED; urgency=low
 
+  * Capitalize “LED” in the project description.
   * Put license into a separate file.
   * Use /usr/bin/env in shebang.
   * Improve the setup script:
@@ -10,7 +11,7 @@ python-keyboardleds (0.3.4) UNRELEASED; urgency=low
     + Don't include copyright information.
     + Don't include Sphinx version.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 18 May 2018 22:49:19 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Tue, 22 May 2018 13:27:58 +0200
 
 python-keyboardleds (0.3.3) unstable; urgency=low
 

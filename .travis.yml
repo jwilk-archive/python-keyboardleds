@@ -20,6 +20,7 @@ install:
 - pip install pydiatra $pyflakes
 - $if_sphinx pip install sphinx
 script:
+- dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
 - python -m pydiatra .
 - pyflakes .
 - $if_sphinx python setup.py build_doc

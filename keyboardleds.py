@@ -110,9 +110,9 @@ class LedKit(object):
         def _get(self):
             if self._input_subsystem:
                 raise NotImplementedError
-            bytes = struct.pack('I', 0)
-            bytes = fcntl.ioctl(self._fd, _KDGETLED, bytes)
-            [result] = struct.unpack('I', bytes)
+            data = struct.pack('I', 0)
+            data = fcntl.ioctl(self._fd, _KDGETLED, data)
+            [result] = struct.unpack('I', data)
             return result
 
     def set(self, lights):

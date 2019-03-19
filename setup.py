@@ -43,7 +43,7 @@ except ImportError:
 else:
     distutils644.install()
 
-b''  # Python >= 2.6 is required
+type(b'')  # Python >= 2.6 is required
 
 def get_version():
     with io.open('doc/changelog', encoding='UTF-8') as file:

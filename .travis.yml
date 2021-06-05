@@ -15,6 +15,9 @@ jobs:
   - python: "3.7"
   - python: "3.8"
   - python: "3.9-dev"
+  allow_failures:
+  - python: "2.6"
+    dist: trusty
 before_install:
 - pyflakes=pyflakes
 - if [[ $TRAVIS_PYTHON_VERSION = 2.6 ]]; then pyflakes='pyflakes<2'; fi

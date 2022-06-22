@@ -90,22 +90,22 @@ def parse_args():
         blink_period = 0.2
 
     ap = argparse.ArgumentParser()
-    ap.add_argument('-t', '--temperature-limit', metavar='<temp>', type=float,
+    ap.add_argument('-t', '--temperature-limit', metavar='TEMP', type=float,
         default=default.temperature_limit,
         help='temperatures above this limit will trigger the alert (default: {0:.0f} deg C)'.format(default.temperature_limit),
     )
-    ap.add_argument('--bogus-temperature-limit', metavar='<temp>', type=float,
+    ap.add_argument('--bogus-temperature-limit', metavar='TEMP', type=float,
         default=default.bogus_temperature_limit,
         help='temperatures above this limit will be consider bogus, and thus ignored (default: {0:.0f} deg C)'.format(default.bogus_temperature_limit),
     )
     ap.add_argument('--led', choices=led_names, default=led_names[0],
         help='keyboard LED to use',
     )
-    ap.add_argument('--poll-period', metavar='<time>', type=float,
+    ap.add_argument('--poll-period', metavar='TIME', type=float,
         default=default.poll_period,
         help='how often to poll sensors (default: {0:.1f} s)'.format(default.poll_period),
     )
-    ap.add_argument('--blink-period', metavar='<time>', type=float,
+    ap.add_argument('--blink-period', metavar='TIME', type=float,
         default=default.blink_period,
         help='how often to blink when alert is on (default: {0:.1f} s)'.format(default.blink_period),
     )
